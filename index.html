@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>interesting  online quiz</title>
+
+    <style> body {
+         margin: 0;
+         font-family: Verdana, Geneva, Tahoma, sans-serif; } 
+    .blue-box 
+    {
+         background-color: blue;
+         color: white;
+         width: 100%; height: 25vh;
+         text-align: center; 
+         padding: 20px;
+
+         
+         }
+         .Play-btn{
+            display: block;
+            width: 100px;
+            height: 50px;
+            margin: 300px auto 20px;
+            padding: 0;
+            font-size: 20px;
+
+            background-color: pink;
+            color: blueviolet;
+            border: none;
+            border-radius: 10px;
+            box-sizing: border-box;
+            cursor: pointer;
+            font-style: italic;
+            font-weight: bold;
+         }
+
+         .white-box
+         {
+            background-color: aquamarine;
+            width: 250px;
+            height: 60px;
+            margin: 50px auto 30px;
+            text-align: center; 
+            padding: 20px;
+            align-items: center;
+         }
+         .white-box input{
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            box-sizing: border-box;
+         }
+         /* Colourful Quiz Page */
+#quiz {
+max-width: 650px;
+width: 90%;
+margin: 35px auto;
+padding: 25px;
+background: linear-gradient(135deg, #ffffff, #f3e8ff);
+border-radius: 20px;
+box-shadow: 0 8px 25px rgba(100, 50, 150, 0.2);
+box-sizing: border-box;
+}
+
+/* Welcome message */
+#welcome {
+text-align: center;
+color: #7c3aed;
+font-size: 26px;
+margin-bottom: 25px;
+}
+
+/* Question headings */
+#quiz h3 {
+background: linear-gradient(90deg, #7c3aed, #a855f7);
+color: white;
+padding: 15px;
+border-radius: 12px;
+font-size: 18px;
+margin-top: 25px;
+}
+
+/* Answer options */
+#quiz label {
+display: block;
+background-color: white;
+border: 2px solid #e9d5ff;
+padding: 12px;
+margin: 10px 0;
+border-radius: 10px;
+cursor: pointer;
+transition: 0.3s;
+}
+
+/* Hover effect on answers */
+#quiz label:hover {
+background-color: #fce7f3;
+border-color: #ec4899;
+transform: translateX(4px);
+}
+
+/* Radio buttons */
+#quiz input[type="radio"] {
+accent-color: #9333ea;
+margin-right: 10px;
+}
+
+/* Submit button */
+#quiz button {
+display: block;
+width: 200px;
+padding: 14px;
+margin: 30px auto 10px;
+background: linear-gradient(90deg, #ec4899, #9333ea);
+color: white;
+border: none;
+border-radius: 30px;
+font-size: 18px;
+font-weight: bold;
+cursor: pointer;
+transition: 0.3s;
+}
+
+/* Button hover effect */
+#quiz button:hover {
+transform: scale(1.05);
+box-shadow: 0 5px 15px rgba(147, 51, 234, 0.3);
+}
+
+/* Result score */
+#result {
+text-align: center;
+color: #15803d;
+background-color: #dcfce7;
+padding: 15px;
+border-radius: 12px;
+font-size: 22px;
+margin-top: 20px;
+}
+
+/* Page background when quiz is visible */
+body:has(#quiz:not([style*="display: none"])) {
+background-color: #f5f3ff;
+}
+
+
+       </style>
+    </head>
+    <body>
+        <div id="home">
+        <div class="blue-box">
+            <h1>MY QUIZ</h1>
+        </div>
+        
+        <div class="white-box">
+            
+         <input type="text" id="name"
+         placeholder="Enter your name">
+          </div>
+        <button class="Play-btn" onclick="startQuiz()">Play now</button>
+        </div>
+
+        <!-- Quiz Page -->
+
+
+<div id="quiz" style="display: none;">
+
+    <h2 id="welcome"></h2>
+
+    <h3>Question 1: An alien visits Earth. Where should we send it to live?</h3>
+
+    <input type="radio" name="q1" value="a">
+    Mars<br>
+
+    <input type="radio" name="q1" value="b">
+    Earth<br>
+
+    <input type="radio" name="q1" value="c">
+    jupiter<br>
+
+    <input type="radio" name="q1" value="d">
+    The sun<br>
+
+    <h3>Question 2: What are Saturn's rings mostly made of?</h3>
+    
+    <input type="radio" name="q2" value="a">
+    gold and diamonds<br>
+
+    <input type="radio" name="q2" value="b">
+    cotton candy and chocolate<br>
+
+    <input type="radio" name="q2" value="c">
+    gold and diamonds<br>
+
+    <input type="radio" name="q2" value="d">
+    potty<br>
+    
+    <h3>Question 3:True or False: Astronauts can become slightly taller in space.</h3>
+
+    <input type="radio" name="q3" value="a">
+    true<br>
+
+    <input type="radio" name="q3" value="a">
+    false<br>
+
+
+    <button onclick="submitQuiz()">Submit Quiz</button>
+
+    <h3 id="result"></h3>
+
+</div>
+        <script>
+function startQuiz() {
+    let name = document.getElementById("name").value.trim();
+
+    if (name === "") {
+        alert("Please enter your name!");
+        return;
+    }
+
+    document.getElementById("home").style.display = "none";
+    document.getElementById("quiz").style.display = "block";
+
+    document.getElementById("welcome").innerText =
+        "Welcome, " + name + "! Let's start the quiz.";
+}
+
+function submitQuiz() {
+    let score = 0;
+
+    if (document.querySelector('input[name="q1"]:checked')?.value === "b") {
+        score++;
+    }
+
+    if (document.querySelector('input[name="q2"]:checked')?.value === "b") {
+        score++;
+    }
+    
+        if (document.querySelector('input[name="q2"]:checked')?.value === "a") {
+        score++;
+    }
+    document.getElementById("result").innerText =
+        "Your score is " + score + " out of 3!";
+}
+</script>
+        
+        
+    </body>
+    
+</html>
